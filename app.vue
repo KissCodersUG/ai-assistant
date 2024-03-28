@@ -1,26 +1,44 @@
 <template>
-  <div>Test WS</div>
+  <div v-for="[key, value] in messages" :key="key">
+    <div>{{ key }}</div>
+    <div>
+      {{ value }}
+    </div>
+  </div>
+  <div>
+    <form @submit.prevent="send">
+      <textarea v-model="message"></textarea>
+      <input type="submit" />
+    </form>
+  </div>
 </template>
 <script setup lang="ts">
+// TODO: Implement Routing
+
+const { data: assistants } = await useFetch('/api/assistants');
+
 let ws: WebSocket | null = null;
 const message = ref<string>('');
-const messages = useState<{ id: number; user: string; message: string; created_at: string }[]>(
-  () => []
-);
+const messages = ref<Map<string, string>>(new Map());
+
 const log = (user: string, ...args: string[]) => {
   console.log('[ws]', user, ...args);
-  messages.value.push({
+
+  /* messages.value.push({
     id: 0,
     message: args.join(' '),
     user: user,
     created_at: new Date().toLocaleString(),
-  });
+  }); */
   scroll();
 };
 const connect = async () => {
   const isSecure = location.protocol === 'https:';
-  const url = (isSecure ? 'wss://' : 'ws://') + location.host + '/api/chat';
-  console.log('🚀 ~ url:', url);
+  const url =
+    (isSecure ? 'wss://' : 'ws://') +
+    location.host +
+    '/api/chat?assistantId=' +
+    assistants.value?.[0]?.id;
   if (ws) {
     log('ws', 'Closing previous connection before reconnecting...');
     ws.close();
@@ -28,27 +46,25 @@ const connect = async () => {
   }
 
   log('ws', 'Connecting to', url, '...');
-  try {
-    ws = new WebSocket(url);
-  } catch (error) {
-    console.log('🚀 ~ error:', error);
-  }
-  console.log('🚀 ~ ws:', ws);
+  messages.value.set('system', 'Connecting to ' + url + '...');
+  ws = new WebSocket(url);
 
-  ws.addEventListener('message', (event) => {
-    console.log('🚀 ~ ws.addEventListener ~ event:', event);
-    const { user = 'system', message = '' } = event.data.startsWith('{')
-      ? JSON.parse(event.data)
-      : { message: event.data };
-    log(user, typeof message === 'string' ? message : JSON.stringify(message));
+  ws?.addEventListener('message', (event) => {
+    const {
+      user = 'system',
+      message = '',
+      _id = '',
+    } = event.data.startsWith('{') ? JSON.parse(event.data) : { message: event.data };
+
+    messages.value.set(_id, message);
   });
 
   await new Promise((resolve) => ws!.addEventListener('open', resolve));
-  log('ws', 'Connected!');
+  messages.value.set('system2', 'Connected!');
 };
 
 const clear = () => {
-  messages.value.splice(0, messages.value.length);
+  // messages.value.splice(0, messages.value.length);
   log('system', 'previous messages cleared');
 };
 
@@ -70,5 +86,9 @@ const send = () => {
 onMounted(async () => {
   connect();
   scroll();
+});
+onBeforeUnmount(() => {
+  console.log('disconnecting...');
+  ws?.close();
 });
 </script>

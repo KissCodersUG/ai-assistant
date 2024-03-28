@@ -1,70 +1,58 @@
 import type { Peer } from 'crossws';
+import { randomUUID } from 'crypto';
 import { getQuery } from 'ufo';
 
-const users = new Map<string, { online: boolean }>();
-console.log('api/chat.ts');
+import { openAIService } from '../services/OpenAIService';
+
+// 1. Endpoint to retrieve threads
+// 2. Endpoint to create a thread
+// 3. Endpoint to delete a thread
+// 4. Enpoint page show the messages of the thread
+// 5. And have the websocket to talk to the thread
+// ---- USERPROFILE ----
+// 6. Authentication
+// 7. Authorization
+// 8. User page to store API keys
+// 9. Saving API key to database
+
+let file, thread;
 export default defineWebSocketHandler({
-  open(peer) {
+  async open(peer) {
     console.log(`[ws] open ${peer}`);
+    const assistantId = getAssistant(peer);
 
-    const userId = getUserId(peer);
-    users.set(userId, { online: true });
+    // Threads are like conversation, we should probably create an endpoint to create a thread
+    // and each conversation will be held on a specific route with a specific thread id
+    // e.g.: /chat/:assistantId/:threadId
+    thread = await openAIService.createThreat(useAppConfig().openAiApiKey);
 
-    const stats = getStats();
-    peer.send({
-      user: 'server',
-      message: `Welcome to the server ${userId}! (Online users: ${stats.online}/${stats.total})`,
-    });
-
-    peer.subscribe('chat');
-    peer.publish('chat', { user: 'server', message: `${peer} joined!` });
+    // TODO: Check how subscribe exactly works
+    // it should probably be a combination of assistantId and threadId
+    peer.subscribe(thread!.id);
   },
   async message(peer, message) {
-    console.log(`[ws] message ${peer} ${message.text()}`);
-
-    const userId = getUserId(peer);
-    if (message.text() === 'ping') {
-      peer.send({ user: 'server', message: 'pong' });
-      return;
-    }
-
-    const _message = {
-      user: userId,
-      message: message.text(),
+    const myMessage: { _id: string; message: string } = {
+      _id: randomUUID(),
+      message: '',
     };
-    peer.send(_message); // echo back
-    peer.publish('chat', _message);
-
-    // Store message in database
-    // await addMessage(userId, message.text());
+    await openAIService.createMessage(useAppConfig().openAiApiKey, thread!.id, message.text());
+    openAIService
+      .createAndStreamRun(useAppConfig().openAiApiKey, thread!.id, getAssistant(peer))
+      .on('textDelta', (textDelta, snapshot) => {
+        myMessage.message += textDelta.value;
+        peer.send(myMessage);
+      });
   },
 
   close(peer, details) {
     console.log(`[ws] close ${peer}`);
-
-    const userId = getUserId(peer);
-    users.set(userId, { online: false });
   },
 
   error(peer, error) {
     console.log(`[ws] error ${peer}`, error);
   },
-
-  upgrade(req) {
-    return {
-      headers: {
-        'x-powered-by': 'cross-ws',
-      },
-    };
-  },
 });
-
-function getUserId(peer: Peer) {
+function getAssistant(peer: Peer) {
   const query = getQuery(peer.url);
-  return query.userId as string;
-}
-
-function getStats() {
-  const online = Array.from(users.values()).filter((u) => u.online).length;
-  return { online, total: users.size };
+  return query.assistantId as string;
 }
