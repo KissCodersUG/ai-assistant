@@ -1,0 +1,57 @@
+﻿Zusammenfassung
+Ich bin ein versierter Software-Ingenieur mit Expertise in Webanwendungen verschiedener Branchen. Meine jüngste Arbeit konzentrierte sich auf die Verbesserung des Sales-Funnels einer führenden Schweizer Immobilienplattform, was meine Fähigkeiten in der Leitung strategischer technologischer Fortschritte unterstreicht. Bei Mercedes-Benz.io spielte ich eine entscheidende Rolle bei der Modernisierung ihrer eCommerce-Plattform, wobei ich fortschrittliche Werkzeuge und Verfahren einsetzte. Bei auteon entwarf und implementierte ich einen Proof-of-Concept für das Design komplexer Web-Scraping-Lösungen und reverse-engineerte automotive Plattformen. Bei Ruhrkraft übernahm ich die Leitung bei der Entwicklung eines dynamischen Planers für ein Digital Signage CMS.
+Während meiner Tätigkeiten habe ich mich intensiv mit Technologien wie Vue, React, Node.js und diversen CI/CD- sowie Testwerkzeugen auseinandergesetzt. Dies garantiert Innovation und Qualität in allen meinen Projekten. Ich teile leidenschaftlich gerne mein Wissen und berate Teams, um das kollektive Know-how zu steigern.
+
+Senior Frontend INGENIEUR
+11/2023 - heute
+Technologien
+Vue, TypeScript, VueX, Vite, Jest, GitHub, AWS Lambda, CDK, Serverless, SonarQube, Node.js, Postman, DataDog
+Beschreibung
+Ich arbeitete mit einem internationalen Team aus Full-Stack- und DevOps-Ingenieuren zusammen, um den Sales-Funnel einer führenden Immobilienplattform zu verbessern. Ich war verantwortlich für die Modernisierung der Frontend- und Backend-Stacks, um modernsten Standards zu entsprechen.
+* Planung und Durchführung der Migrationsstrategie von Vue 2 zu Vue 3
+* Migration vom Serverless-Framework zum AWS Cloud Development Kit (CDK) für robustere und wartbarere Praktiken von Infrastructure as Code
+* Leitung der Entwicklung neuer Funktionen
+* Verbesserung der Entwicklungs­umgebung, um die Codequalität und die Developer Experience zu verbessern
+* Identifizierung und Behebung von Frontend- und Backend Bugs
+
+
+Senior Frontend INGENIEUR | Mercedes-benz.io
+01/2022 - 09/2023 (1 Jahr, 9 Monate)
+Technologien
+Vue, TypeScript, Pinia, VueX, Vite, Jest, Vitest, GitHub, Kubernetes, Jenkins, SonarQube, Helm Charts
+Beschreibung
+Gemeinsam mit einem internationalen Team von Frontend-, Backend- und DevOps-Ingenieuren habe ich zur Entwicklung des Mercedes Me Web-Storefront beigetragen.
+* Feature-Spezifikationen und Abstimmung mit externen Abhängigkeiten
+* Koordination eines Teams von 5-8 Entwicklern
+* Migration von Vue 2 zu Vue 3
+* Migration von Jest zu Vitest
+* Umstellung auf Typescript
+* Entwicklung neuer Features, DevOps-Pipelines
+* Analyse und Behebung von Bugs und Problemen
+* Verbesserung der Codequalität und -sicherheit
+Senior FULLSTACK INGENIEUR | AUTEON
+10/2021 - 04/2022 (6 Monate)
+Technologien
+Vue, TypeScript, Google Cloud Functions, Node.js, Cheerio, Puppeteer, Postman, GraphQL, Hasura 
+Beschreibung
+Ich entwickelte einen Proof-of-Concept, indem ich automotive E-Commerce-Websites reverse-engineerte, um einen Web-Scraping-Service zu erstellen. Nach dessen Fertigstellung schulte ich mehrere Entwickler in seiner Implementierung und Nutzung.
+* Analyse der Struktur und des Inhalts der zu reverse-engineerenden Websites.
+* Analyse der Quellcodes der Websites und Netzwerkanfragen
+* Erkennen von Mustern und Hindernissen, wie z.B. CAPTCHAs oder AJAX-Anfragen
+* Programmierung in TypeScript und Node.js, um die Scraping-Logik umzusetzen
+* Implementierung einer Testsuite in Postman, um sicherzustellen, dass die Daten korrekt gescraped werden
+* Erstellung einer umfassenden Dokumentation, die die Architektur des Scraping-Services beschreibt
+* Organisation von Schulungssitzungen für Entwickler nach Abschluss.
+
+
+FULLSTACK INGENIEUR | RUHRKRAFT
+09/2020 - 09/2021 (1 Jahr)
+Technologien
+Vue, React, TypeScript, VueX, Meteor, Node.js, Jest
+Beschreibung
+Ich war verantwortlich für das Design und die Implementierung eines Planers für ein Digital Signage Content Management System. Das Hauptziel dieses Planers war es, den Benutzern eine unkomplizierte Plattform für die Planung, Terminierung und das Hochladen von Werbekampagnen zu bieten. Nach dem Hochladen wurden diese Kampagnen nahtlos auf Multimedia-Bildschirmen an verschiedenen Standorten angezeigt.
+* Implementierung einer benutzerfreundlichen Oberfläche, die eine einfache Planung und Verwaltung von Kampagnen ermöglichte
+* Implementierung von Algorithmen, um Überschneidungen von Anzeigen zu vermeiden und einen reibungslosen Übergang zwischen den Kampagnen zu gewährleisten
+* Sicherstellung, dass der Zeitplaner mit verschiedenen Multimedia-Bildschirmgrößen und -auflösungen kompatibel war und ihn unter verschiedenen Szenarien rigoros testete, um Zuverlässigkeit und Effektivität zu garantieren
+* Entwurf einer umfassenden Datenstruktur für Kampagnen und Playlisten, um Flexibilität und effiziente Abrufbarkeit zu gewährleisten
+* Sicherstellung, dass Kampagnen nahtlos auf verschiedenen Multimedia-Geräten und -standorten angezeigt werden.
