@@ -1,4 +1,4 @@
-import { openAIService } from '../../../services/OpenAIService';
+import { openAIService } from "../../../services/OpenAIService";
 
 export default defineEventHandler(async (event) => {
   const { assistantId } = getRouterParams(event);

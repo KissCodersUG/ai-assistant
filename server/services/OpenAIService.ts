@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+import OpenAI from "openai";
 
 class OpenAIService {
   private clients: Map<string, OpenAI>;
@@ -15,25 +15,33 @@ class OpenAIService {
     return client;
   }
 
-  public createFile(apiKey: string, file: any): Promise<OpenAI.Files.FileObject> {
+  public createFile(
+    apiKey: string,
+    file: any,
+  ): Promise<OpenAI.Files.FileObject> {
     const client = this.getClient(apiKey);
-    return client.files.create({ purpose: 'assistants', file });
+    return client.files.create({ purpose: "assistants", file });
   }
 
   public createAssistant(
     apiKey: string,
-    options: OpenAI.Beta.Assistants.AssistantCreateParams
+    options: OpenAI.Beta.Assistants.AssistantCreateParams,
   ): Promise<OpenAI.Beta.Assistants.Assistant> {
     const client = this.getClient(apiKey);
     return client.beta.assistants.create(options);
   }
 
-  public deleteAssistant(apiKey: string, assistantId: string): Promise<OpenAI.Beta.Assistants.AssistantDeleted> {
+  public deleteAssistant(
+    apiKey: string,
+    assistantId: string,
+  ): Promise<OpenAI.Beta.Assistants.AssistantDeleted> {
     const client = this.getClient(apiKey);
     return client.beta.assistants.del(assistantId);
   }
 
-  public async listAssistants(apiKey: string): Promise<OpenAI.Beta.Assistants.Assistant[]> {
+  public async listAssistants(
+    apiKey: string,
+  ): Promise<OpenAI.Beta.Assistants.Assistant[]> {
     const client = this.getClient(apiKey);
     return (await client.beta.assistants.list())?.data;
   }
@@ -43,7 +51,10 @@ class OpenAIService {
     return client.beta.threads.create();
   }
 
-  public retrieveThread(apiKey: string, threadId: string): Promise<OpenAI.Beta.Threads.Thread> {
+  public retrieveThread(
+    apiKey: string,
+    threadId: string,
+  ): Promise<OpenAI.Beta.Threads.Thread> {
     const client = this.getClient(apiKey);
     return client.beta.threads.retrieve(threadId);
   }
@@ -51,12 +62,16 @@ class OpenAIService {
   public createMessage(apiKey: string, threadId: string, content: string) {
     const client = this.getClient(apiKey);
     return client.beta.threads.messages.create(threadId, {
-      role: 'user',
+      role: "user",
       content,
     });
   }
 
-  public createAndStreamRun(apiKey: string, threadId: string, assistantId: string) {
+  public createAndStreamRun(
+    apiKey: string,
+    threadId: string,
+    assistantId: string,
+  ) {
     const client = this.getClient(apiKey);
     return client.beta.threads.runs.createAndStream(threadId, {
       assistant_id: assistantId,

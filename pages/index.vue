@@ -5,6 +5,11 @@ const { signOut } = useAuth();
 <template>
   <div>Index Page</div>
   <div>
-    <button type="button" @click="signOut({ callbackUrl: '/login' })">Sign Out</button>
+    <button
+      type="button"
+      @click="signOut({ callbackUrl: '/login' })"
+    >
+      Sign Out
+    </button>
   </div>
 </template>

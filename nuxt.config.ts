@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     globalAppMiddleware: true,
   },
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@sidebase/nuxt-auth'],
+  modules: ["@nuxtjs/tailwindcss", "@sidebase/nuxt-auth"],
   nitro: {
     experimental: {
       websocket: true,

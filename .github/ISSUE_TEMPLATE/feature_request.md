@@ -1,15 +1,15 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
+title: ""
 labels: feature
-assignees: ''
-
+assignees: ""
 ---
 
 {description}
 
 **ACCEPTANCE CRITIREA**
+
 1. {acceptance citerium}
 
 **ADDITIONAL CONTEXT**
