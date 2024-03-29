@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-// TODO: See if this is accessible when authenticated
-const { signIn } = useAuth();
 const email = ref("");
 const password = ref("");
 const errorMessage = ref("");
@@ -13,16 +11,7 @@ definePageMeta({
 });
 
 const handleSubmit = async () => {
-  const result = await signIn("credentials", {
-    redirect: false,
-    email: email.value,
-    password: password.value,
-  });
-  if (result && result.error) {
-    errorMessage.value = result.error;
-  } else {
-    await navigateTo("/");
-  }
+  // Implement the sign up logic
 };
 </script>
 
@@ -38,7 +27,7 @@ const handleSubmit = async () => {
           @submit.prevent="handleSubmit"
         >
           <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-            Sign in to our platform
+            Get started with your account
           </h5>
           <div>
             <label
@@ -72,39 +61,19 @@ const handleSubmit = async () => {
               required
             />
           </div>
-          <!-- <div class="flex items-start">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="remember"
-                  type="checkbox"
-                  value=""
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                  required
-                />
-              </div>
-              <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >Remember me</label
-              >
-            </div>
-            <a href="#" class="ms-auto text-sm text-indigo-700 hover:underline dark:text-indigo-500"
-              >Lost Password?</a
-            >
-          </div> -->
           <button
             type="submit"
             class="w-full rounded-lg bg-indigo-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
           >
-            Login to your account
+            Get Started!
           </button>
           <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-            Not registered?
+            Already have an account?
             <NuxtLink
-              to="/sign-up"
+              to="/login"
               class="text-indigo-700 hover:underline dark:text-indigo-500"
+              >Sign in</NuxtLink
             >
-              Create account
-            </NuxtLink>
           </div>
         </form>
       </div>
