@@ -24,7 +24,7 @@ export default defineWebSocketHandler({
     // Threads are like conversation, we should probably create an endpoint to create a thread
     // and each conversation will be held on a specific route with a specific thread id
     // e.g.: /chat/:assistantId/:threadId
-    thread = await openAIService.createThreat(useAppConfig().openAiApiKey);
+    thread = await openAIService.createThread(useAppConfig().openAiApiKey);
 
     // TODO: Check how subscribe exactly works
     // it should probably be a combination of assistantId and threadId
