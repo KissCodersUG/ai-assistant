@@ -43,6 +43,11 @@ class OpenAIService {
     return client.beta.threads.create();
   }
 
+  public retrieveThread(apiKey: string, threadId: string): Promise<OpenAI.Beta.Threads.Thread> {
+    const client = this.getClient(apiKey);
+    return client.beta.threads.retrieve(threadId);
+  }
+
   public createMessage(apiKey: string, threadId: string, content: string) {
     const client = this.getClient(apiKey);
     return client.beta.threads.messages.create(threadId, {
