@@ -12,5 +12,8 @@ module.exports = {
     "plugin:tailwindcss/recommended",
     "eslint-config-prettier", // has to be last to be able to disable rules
   ],
-  rules: { "vue/no-multiple-template-root": "off" },
+  rules: {
+    "vue/no-multiple-template-root": "off",
+    "tailwindcss/no-custom-classname": "off",
+  },
 };
