@@ -8,6 +8,7 @@ definePageMeta({
     unauthenticatedOnly: true,
     navigateAuthenticatedTo: "/",
   },
+  layout: "guest-layout",
 });
 
 const handleSubmit = async () => {
@@ -16,6 +17,7 @@ const handleSubmit = async () => {
 </script>
 
 <template>
+  <Head><Title>Sign up!</Title></Head>
   <div class="SignUpPage flex justify-center">
     <div class="flex flex-col items-center">
       <div

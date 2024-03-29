@@ -3,6 +3,7 @@ const { signOut } = useAuth();
 </script>
 
 <template>
+  <Head><Title>Home</Title></Head>
   <div class="HomePage">
     Index Page
     <div>
