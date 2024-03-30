@@ -4,7 +4,10 @@ export default defineNuxtConfig({
     globalAppMiddleware: true,
   },
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@sidebase/nuxt-auth"],
+  modules: ["@nuxtjs/tailwindcss", "nuxt-mongoose", "@sidebase/nuxt-auth"],
+  mongoose: {
+    uri: process.env.MONGODB_URI,
+  },
   nitro: {
     experimental: {
       websocket: true,
