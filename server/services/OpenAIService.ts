@@ -67,6 +67,11 @@ class OpenAIService {
     });
   }
 
+  public listMessages(apiKey: string, threadId: string) {
+    const client = this.getClient(apiKey);
+    return client.beta.threads.messages.list(threadId);
+  }
+
   public createAndStreamRun(
     apiKey: string,
     threadId: string,
