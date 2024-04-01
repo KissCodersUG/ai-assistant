@@ -1,7 +1,3 @@
 {
-  "functions": {
-    "__nitro": {
-      "maxDuration": 5
-    }
-  }
+  "maxDuration": 5
 }
