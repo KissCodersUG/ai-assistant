@@ -74,7 +74,9 @@ const scroll = () => {
     console.log("scrooling");
     window.scrollTo(0, document.body.scrollHeight + 100);
   });
+  console.log(`scrolled, ws: ${ws}, messages: ${messages.value.size}`);
 };
+console.log("after scroll,ws: ${ws}, messages: ${messages.value.size}");
 
 const send = () => {
   console.log("sending message...");
