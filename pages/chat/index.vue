@@ -71,7 +71,7 @@ const clear = () => {
 
 const scroll = () => {
   nextTick(() => {
-    console.log("scrooling");
+    console.log("scrolling");
     window.scrollTo(0, document.body.scrollHeight + 100);
   });
   console.log(`scrolled, ws: ${ws}, messages: ${messages.value.size}`);
