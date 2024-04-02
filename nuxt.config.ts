@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     uri: process.env.MONGODB_URI,
   },
   nitro: {
+    vercel: { functions: { maxDuration: 300 } },
     experimental: {
       websocket: true,
     },
