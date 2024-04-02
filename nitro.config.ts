@@ -1,6 +1,6 @@
-import { definenitroConfig } from "nitropack";
+import { defineNitroConfig } from "nitropack";
 
-export default definenitroConfig({
+export default defineNitroConfig({
   vercel: {
     functions: {
       maxDuration: 300,
