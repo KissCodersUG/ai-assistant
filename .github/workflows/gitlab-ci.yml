@@ -49,6 +49,6 @@ jobs:
           # Add the SSH key stored in SSH_PRIVATE_KEY secret to the agent
           ssh-add <(echo "$SSH_PRIVATE_KEY")
           # Prepare the command to run on the remote server
-          CMD="source .env && pm2 start ecosystem.config.cjs"
+          CMD="cd /var/www/ai-assistant/ && source .env && pm2 start ecosystem.config.cjs"
           # Execute the command through SSH
           ssh -o StrictHostKeyChecking=no ubuntu@34.243.12.73 "bash -c '${CMD}'"
