@@ -41,4 +41,4 @@ jobs:
       - name: Install PM2
         run: bun install --global pm2
       - name: Deploy
-        run: env $(cat .env | grep -v \"#\" | xargs) pm2 start ecosystem.config.js
+        run: env $(cat .env | grep -v \"#\" | xargs) pm2 start ecosystem.config.cjs
