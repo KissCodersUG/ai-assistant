@@ -27,13 +27,12 @@ jobs:
           touch .env
           echo AUTH_ORIGIN=${{ secrets.AUTH_ORIGIN }} >> .env
           echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
-          cp .env ./.output/server/.env
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.1
         with:
           switches: -avzr --delete
-          path: ./*
+          path: ./.output/server ecosystem.config.cjs .env
           remote_path: /var/www/ai-assistant/
           remote_host: 34.243.12.73
           remote_user: ubuntu
