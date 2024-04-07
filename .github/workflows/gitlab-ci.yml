@@ -20,10 +20,14 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build
-        env:
-          AUTH_ORIGIN: ${{ secrets.AUTH_ORIGIN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: bun run build
+
+      - name: Setup environment variables
+        run: |
+          touch .env
+          echo AUTH_ORIGIN=${{ secrets.AUTH_ORIGIN }} >> .env
+          echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEYTABASE_URL }} >> .env
+          cp .env ./.output/server/.env
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.1
@@ -34,3 +38,7 @@ jobs:
           remote_host: 34.243.12.73
           remote_user: ubuntu
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+      - name: Install PM2
+        run: bun install --global pm2
+      - name: Deploy
+        run: env $(cat .env | grep -v \"#\" | xargs) pm2 start ecosystem.config.js
