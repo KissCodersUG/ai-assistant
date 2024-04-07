@@ -16,8 +16,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v1
 
-      - run: bun install --frozen-lockfile
-      - run: bun run build
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        env:
+          AUTH_ORIGIN: ${{ secrets.AUTH_ORIGIN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: bun run build
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.1
