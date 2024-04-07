@@ -28,15 +28,16 @@ jobs:
           echo AUTH_ORIGIN=${{ secrets.AUTH_ORIGIN }} >> .env
           echo OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} >> .env
 
-      - name: rsync deployments
+      - name: rsync .env and config
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avzr --delete
+          switches: -avzr --delete --include=.env --include=ecosystem.config.cjs --include=.output/*  --exclude '*'
           path: ./
           remote_path: /var/www/ai-assistant/
           remote_host: 34.243.12.73
           remote_user: ubuntu
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+
       - name: Install PM2
         run: bun install --global pm2
       - name: Deploy
