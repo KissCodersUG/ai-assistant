@@ -31,8 +31,8 @@ jobs:
       - name: rsync deployments
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avzr --delete --include=.output/* --include=.env --include ecosystem.config.cjs
-          path: ./*
+          switches: -avzr --delete
+          path: ./
           remote_path: /var/www/ai-assistant/
           remote_host: 34.243.12.73
           remote_user: ubuntu
