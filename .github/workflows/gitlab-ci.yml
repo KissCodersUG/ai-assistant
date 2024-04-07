@@ -48,7 +48,7 @@ jobs:
           eval $(ssh-agent -s)
           # Add the SSH key stored in SSH_PRIVATE_KEY secret to the agent
           ssh-add <(echo "$SSH_PRIVATE_KEY")
-          # Disable SSH host key checking for the current command
-          SSH_CMD="ssh -o StrictHostKeyChecking=no"
-
-          $SSH_CMD ubuntu@34.243.12.73 'bash -s' < env $(cat .env | grep -v \"#\" | xargs) pm2 start ecosystem.config.cjs
+          # Prepare the command to run on the remote server
+          CMD="source .env && pm2 start ecosystem.config.cjs"
+          # Execute the command through SSH
+          ssh -o StrictHostKeyChecking=no ubuntu@34.243.12.73 "bash -c '${CMD}'"
